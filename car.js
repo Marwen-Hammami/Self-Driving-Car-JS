@@ -13,16 +13,17 @@ class Car {
     this.damaged = false;
 
     this.useBrain = controlType == "AI";
+    this.img = new Image();
 
     if (controlType != "DUMMY") {
       this.sensor = new Sensor(this);
       this.brain = new NeuralNetwork([this.sensor.rayCount, 6, 4]);
+      this.img.src = "./car_models/ae86_carbon.png";
+    } else {
+      this.img.src = "./car_models/car.png";
     }
 
     this.controls = new Controls(controlType);
-
-    this.img = new Image();
-    this.img.src = "car.png";
 
     this.mask = document.createElement("canvas");
     this.mask.width = width;
